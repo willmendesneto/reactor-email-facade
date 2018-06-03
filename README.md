@@ -66,17 +66,24 @@ $ npm debug:app
 
 And the project it will be running locally using `--inspect-brk` flag, enabling V8 inspector integration. For more details, please take a look at [NodeJS Debugging Guide](https://nodejs.org/en/docs/guides/debugging-getting-started/).
 
-### Run the tests
+### Run the unit tests
 
 ```bash
-$ npm test # run the tests
+$ npm test:unit # run the tests
+```
+
+### Run the integration tests
+
+```bash
+$ npm test:integration # run the tests
 ```
 
 
 ### Run the tests in watch mode
 
 ```bash
-$ npm test -- -w # run the tests in watch mode
+$ npm test:unit -- -w # run the unit tests in watch mode
+$ npm test:integration -- -w # run the integration tests in watch mode
 ```
 
 

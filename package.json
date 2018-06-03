@@ -11,7 +11,8 @@
     "debug:app": "nodemon -w src -w .env --inspect-brk ./src/index.js",
     "editorconfig-tools-check": "editorconfig-tools check ./src/**",
     "pretest": "eslint src/* test/*",
-    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=html  mocha --opts ./test/unit/mocha.opts"
+    "test:unit": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=html  mocha --opts ./test/unit/mocha.opts",
+    "test:integration": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=html  mocha --opts ./test/integration/mocha.opts"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.0.0",
     "cors": "^2.8.4",
     "cross-env": "^5.1.6",
     "editorconfig-tools": "^0.1.1",

@@ -40,6 +40,9 @@ workflows:
             - unit_test:
                 requires:
                     - build
+            - integration_test:
+                requires:
+                    - build
             - editorconfig_file_check:
                 requires:
                     - build
@@ -55,12 +58,21 @@ jobs:
                 name: Running unit tests
                 command: |
                   sudo cp -f .env.example .env
-                  sudo npm test -- --single-run --no-progress -cc
+                  sudo npm run test:unit
+    integration_test:
+        <<: *docker_defaults
+        steps:
+            - *attach_workspace
+            - run:
+                name: Running integration tests
+                command: |
+                  sudo cp -f .env.example .env
+                  sudo npm run test:integration
     editorconfig_file_check:
         <<: *docker_defaults
         steps:
             - *attach_workspace
             - run:
-                name: Checking bundle size
+                name: Checking editorconfig configuration
                 command: |
                   sudo npm run editorconfig-tools-check

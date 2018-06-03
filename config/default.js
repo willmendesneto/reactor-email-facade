@@ -6,5 +6,5 @@ module.exports = {
   MAILGUN_SECRET_KEY: process.env.MAILGUN_SECRET_KEY,
   MAILGUN_URL: process.env.MAILGUN_URL,
   PORT: process.env.PORT || 3000,
-  LOG_LEVEL: process.env.LOG_LEVEL || 'silly',
+  LOG_LEVEL: process.env.LOG_LEVEL || 'info',
 };
