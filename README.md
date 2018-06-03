@@ -102,6 +102,21 @@ This project is using Circle CI to run all the automated tasks/validations. This
 You can download `postman`, a Rest client to simulate the requests locally, and import [this collection](./docs/REACTOR_EMAIL.postman_collection.json). After that, you can do all the calls you want to see how the API is working.
 
 
+## Improvements
+
+These are the list of the tech debt / improvements for this project
+
+- [] Use generators/iterators instead of `for... and await` on the email provider;
+- [] Add performance tests;
+- [] Service discovery integration, such as `consul`, with fallback for `.env`. This will make the application decoupled with the code and configuration, avoiding unnecessary deployment in case of the configuration changes;
+- [] Feature to enable/disable some of the email providers via configuration;
+- [] Dispatcher a queue message when it receives a htpp call. This is required to make sure that the application is resilient. In cases like the API is down or all the available providers can't respond properly;
+- [] Add a possibility to retry send the email from the providers;
+- [] Add configuration to order the email providers by configuration. This will give more flexibility to the application;
+- [] Use a single email provider to send the email;
+
+
+
 ## Author
 
 **Wilson Mendes (willmendesneto)**
