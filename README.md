@@ -4,6 +4,8 @@
 
 
 [![Build Status](https://circleci.com/gh/willmendesneto/reactor-email-facade.svg?style=shield)](https://circleci.com/gh/willmendesneto/reactor-email-facade)
+[![Coverage Status](https://coveralls.io/repos/github/willmendesneto/reactor-email-facade/badge.svg?branch=master)](https://coveralls.io/github/willmendesneto/reactor-email-facade?branch=master)
+
 
 ## Frameworks, Libraries and Tools
 

@@ -59,6 +59,7 @@ jobs:
                 command: |
                   sudo cp -f .env.example .env
                   sudo npm run test:unit
+                  sudo npm run coveralls
     integration_test:
         <<: *docker_defaults
         steps:
