@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "38f33685-e531-4c04-8bee-c310d3cb75f9",
+		"name": "REACTOR_EMAIL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get::Discovery",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://0.0.0.0:3000/v1/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						""
+					]
+				},
+				"description": "API Discovery for endpoints"
+			},
+			"response": []
+		},
+		{
+			"name": "Post::SendEmail",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "to",
+							"value": "to@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "cc",
+							"value": "cc@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "bcc",
+							"value": "bcc@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "from",
+							"value": "from@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hello world",
+							"type": "text"
+						},
+						{
+							"key": "subject",
+							"value": "This is a test",
+							"type": "text"
+						},
+						{
+							"key": "to",
+							"value": "this@isatest.com",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://0.0.0.0:3000/v1/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						""
+					]
+				},
+				"description": "Send email to email providers"
+			},
+			"response": []
+		}
+	]
+}

@@ -3,6 +3,7 @@
 > Email API as facade for other email clients
 
 
+[![Build Status](https://circleci.com/gh/willmendesneto/reactor-email-facade.svg?style=shield)](https://circleci.com/gh/willmendesneto/reactor-email-facade)
 
 ## Frameworks, Libraries and Tools
 
@@ -85,6 +86,18 @@ $ npm test:integration # run the tests
 $ npm test:unit -- -w # run the unit tests in watch mode
 $ npm test:integration -- -w # run the integration tests in watch mode
 ```
+
+
+## Circle CI Pipeline Model
+
+This project is using Circle CI to run all the automated tasks/validations. This is the current build pipeline which runs if someone sends a new Pull Request or master is updated.
+
+
+![Circle CI Pipeline](./docs/circle-ci-pipeline.png)
+
+## Checking the API endpoints
+
+You can download `postman`, a Rest client to simulate the requests locally, and import [this collection](./docs/REACTOR_EMAIL.postman_collection.json). After that, you can do all the calls you want to see how the API is working.
 
 
 ## Author
