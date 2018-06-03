@@ -10,6 +10,8 @@ const sendEmailByFirstProviderAvailable = async (data) => {
   let success = false;
 
   /* eslint-disable */
+  // TODO: Use iterators/generators instead of for .. of with `await`
+  // to improve memory consuming
   for (const emailProvider of emailProviders) {
     logger.info(`Trying send the email using '${emailProvider.name}'.`);
     success = await emailProvider.send(data);

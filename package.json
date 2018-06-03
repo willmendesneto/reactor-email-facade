@@ -19,6 +19,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
+    "cors": "^2.8.4",
     "cross-env": "^5.1.6",
     "editorconfig-tools": "^0.1.1",
     "eslint": "^4.19.1",
@@ -49,7 +50,6 @@
     "express": "^4.16.3",
     "express-pino-logger": "^3.0.1",
     "express-slash": "^2.0.1",
-    "form-data": "^2.3.2",
     "helmet": "^3.12.1",
     "hpp": "^0.2.2",
     "joi": "^13.3.0",

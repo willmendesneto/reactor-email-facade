@@ -46,6 +46,8 @@ app.use(slash());
 // Express error handler http://expressjs.com/en/guide/error-handling.html
 if (conf.get('IS_PRODUCTION')) {
   app.use(errorHandler);
+} else {
+  app.use(require('cors')()); // eslint-disable-line
 }
 
 module.exports = app;

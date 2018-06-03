@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const FormData = require('form-data');
+const querystring = require('querystring');
 
 const { schemas, runValidation } = require('../schemas');
 
@@ -28,26 +28,26 @@ const configureEmailProvider = ({
   const buildAuthKey = (key) => Buffer.from(`api:${key}`).toString('base64');
 
   const sendMessageToTarget = async (message) => {
-    const url = `${mailgunUrl}/messages`;
-
-    const formData = new FormData();
-    Object.keys(message).forEach((key) => formData.append(key, message[key]));
-
-    const options = {
-      body: formData,
-      method: 'POST',
-      headers: {
-        ...formData.getHeaders(),
-        Authorization: `Basic ${buildAuthKey(mailgunSecretKey)}`,
-      },
-    };
-
     try {
-      const response = await fetch(url, options, formData.getHeaders());
+      const url = `${mailgunUrl}/messages`;
+
+      const options = {
+        body: querystring.stringify(message),
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: `Basic ${buildAuthKey(mailgunSecretKey)}`,
+        },
+      };
+
+      logger.info(
+        `Mailgun API: Starting request. Options: ${JSON.stringify(options)}`,
+      );
+
+      const response = await fetch(url, options);
       if (!response.ok) {
         logger.error(`Mailgun API returned '${response.status}' for '${url}'`);
       }
-
       return response.ok && response.status === 200;
     } catch (error) {
       logger.error(error);
@@ -56,7 +56,26 @@ const configureEmailProvider = ({
     return false;
   };
 
-  const formatDataToProvider = (data) => data;
+  const formatDataToProvider = ({ from, text, subject, ...data }) => {
+    const multipleOptionalItems = Object.keys(data)
+      .filter((key) => ['to', 'bcc', 'cc'].includes(key))
+      .reduce(
+        (value, key) => ({
+          ...value,
+          [key]: [].concat(data[key]).join(','),
+        }),
+        {},
+      );
+
+    const formattedData = {
+      from,
+      text,
+      subject,
+      ...multipleOptionalItems,
+    };
+
+    return formattedData;
+  };
 
   const send = async (data) => {
     try {

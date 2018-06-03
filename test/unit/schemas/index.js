@@ -3,7 +3,7 @@ const { schemas, runValidation } = require('../../../src/schemas');
 describe('Schemas', () => {
   describe('BASE_EMAIL_SCHEMA', () => {
     const message = {
-      to: 'anothertest@inexistentdomain.com',
+      to: ['anothertest@inexistentdomain.com'],
       from: 'test@inexistentdomain.com',
       text: 'Hello world',
       subject: 'This is a test',

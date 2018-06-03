@@ -1,6 +1,6 @@
 # Reactor Email Provider
 
-> Email facade for other clients
+> Email API as facade for other email clients
 
 
 

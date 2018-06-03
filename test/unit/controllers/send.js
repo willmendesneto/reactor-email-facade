@@ -15,7 +15,14 @@ const sendController = proxyquire('../../../src/controllers/send', {
 });
 
 describe('Controllers: Send', () => {
-  const req = { logger };
+  const req = { log: logger };
+  const requestBody = {
+    to: ['anothertest@inexistentdomain.com'],
+    from: 'test@inexistentdomain.com',
+    text: 'Hello world',
+    subject: 'This is a test',
+  };
+
   beforeEach(() => {
     res.status.returns({ send: sendResponse });
   });
@@ -44,12 +51,7 @@ describe('Controllers: Send', () => {
     beforeEach(async () => {
       const request = {
         ...req,
-        body: {
-          to: 'anothertest@inexistentdomain.com',
-          from: 'test@inexistentdomain.com',
-          text: 'Hello world',
-          subject: 'This is a test',
-        },
+        body: requestBody,
       };
       emailProvider.sendEmailByFirstProviderAvailable.resolves(false);
       await sendController(request, res);
@@ -71,12 +73,7 @@ describe('Controllers: Send', () => {
     beforeEach(async () => {
       const request = {
         ...req,
-        body: {
-          to: 'anothertest@inexistentdomain.com',
-          from: 'test@inexistentdomain.com',
-          text: 'Hello world',
-          subject: 'This is a test',
-        },
+        body: requestBody,
       };
       emailProvider.sendEmailByFirstProviderAvailable.resolves(true);
       await sendController(request, res);

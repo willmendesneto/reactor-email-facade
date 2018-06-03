@@ -14,7 +14,7 @@ const sendController = async (req, res) => {
   if (!validationResult.valid) {
     statusCode = 400;
     data.message = `Invalid information: ${validationResult.error}`;
-    req.logger.error(data);
+    req.log.error(data);
     return res.status(statusCode).send(data);
   }
 
@@ -25,7 +25,7 @@ const sendController = async (req, res) => {
     data.message =
       "Houston, we're having some problems and your email was not delivered. Try again later";
   }
-  req.logger.error(data);
+  req.log.error(data);
   return res.status(statusCode).send(data);
 };
 

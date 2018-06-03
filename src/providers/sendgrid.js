@@ -24,18 +24,22 @@ const configureEmailProvider = ({
   }
 
   const sendMessageToTarget = async (message) => {
-    const url = `${sendgridUrl}/v3/mail/send`;
-
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(message),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${sendgridSecretKey}`,
-      },
-    };
-
     try {
+      const url = `${sendgridUrl}/v3/mail/send`;
+
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(message),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${sendgridSecretKey}`,
+        },
+      };
+
+      logger.info(
+        `Sendgrid API: Starting request. Options: ${JSON.stringify(options)}`,
+      );
+
       const response = await fetch(url, options);
       if (!response.ok) {
         logger.error(`Sendgrid API returned '${response.status}' for '${url}'`);
@@ -48,14 +52,23 @@ const configureEmailProvider = ({
     return false;
   };
 
-  const formatDataToProvider = (data) => ({
-    from: { email: data.from },
-    subject: data.subject,
-    content: [{ type: 'type/plain', value: data.text }],
-    personalizations: Object.keys(data)
+  const formatDataToProvider = ({ from, text, subject, ...data }) => {
+    const multipleOptionalItems = Object.keys(data)
       .filter((key) => ['to', 'cc', 'bcc'].includes(key))
-      .map((key) => ({ [key]: [{ email: data[key] }] })),
-  });
+      .reduce(
+        (value, key) => ({
+          ...value,
+          [key]: [].concat(data[key]).map((email) => ({ email })),
+        }),
+        {},
+      );
+
+    return {
+      personalizations: [{ ...multipleOptionalItems, subject }],
+      from: { email: from },
+      content: [{ type: 'type/plain', value: text }],
+    };
+  };
 
   const send = async (data) => {
     try {

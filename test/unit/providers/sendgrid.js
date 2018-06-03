@@ -13,7 +13,9 @@ describe('Providers: Sendgrid', () => {
   const sendgridSecretKey = 'abc123';
   const endpoint = '/v3/mail/send';
   const emailData = {
-    to: 'anothertest@inexistentdomain.com',
+    to: ['anothertest@inexistentdomain.com'],
+    cc: 'anothertest@inexistentdomain.com',
+    bcc: ['anothertest@inexistentdomain.com'],
     from: 'test@inexistentdomain.com',
     text: 'Hello world',
     subject: 'This is a test',

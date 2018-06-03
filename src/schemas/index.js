@@ -5,10 +5,21 @@ const runValidation = (obj, joiSchema) => {
   return { valid: error === null, error: error === null ? '' : error.message };
 };
 
+const EMAIL_REQUIRED = Joi.string()
+  .email()
+  .required();
+
+const EMAIL_LIST = [
+  EMAIL_REQUIRED,
+  Joi.array()
+    .unique()
+    .items(EMAIL_REQUIRED),
+];
+
 const BASE_EMAIL_SCHEMA = Joi.object().keys({
-  to: Joi.string()
-    .email()
-    .required(),
+  to: EMAIL_LIST,
+  cc: EMAIL_LIST,
+  bcc: EMAIL_LIST,
   from: Joi.string()
     .email()
     .required(),
