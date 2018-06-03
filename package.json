@@ -1,0 +1,59 @@
+{
+  "name": "reactor-email-facade",
+  "version": "1.0.0",
+  "description": "Reactor Email Facade: Email facade for other clients",
+  "main": "index.js",
+  "directories": {
+    "src": "src"
+  },
+  "scripts": {
+    "start:app": "node ./src/index.js",
+    "debug:app": "nodemon -w src -w .env --inspect-brk ./src/index.js",
+    "editorconfig-tools-check": "editorconfig-tools check ./src/**",
+    "pretest": "eslint src/* test/*",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=html  mocha --opts ./test/unit/mocha.opts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "cross-env": "^5.1.6",
+    "editorconfig-tools": "^0.1.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-react": "^7.8.2",
+    "mocha": "^5.2.0",
+    "nock": "^9.3.0",
+    "nodemon": "^1.17.5",
+    "nyc": "^12.0.1",
+    "prettier": "^1.13.4",
+    "proxyquire": "^2.0.1",
+    "sinon": "^5.0.10",
+    "sinon-chai": "^3.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.2",
+    "config": "^1.30.0",
+    "cookie-parser": "^1.4.3",
+    "dotenv-safe": "^5.0.1",
+    "express": "^4.16.3",
+    "express-pino-logger": "^3.0.1",
+    "express-slash": "^2.0.1",
+    "form-data": "^2.3.2",
+    "helmet": "^3.12.1",
+    "hpp": "^0.2.2",
+    "joi": "^13.3.0",
+    "node-fetch": "^2.1.2",
+    "pino": "^4.17.3"
+  }
+}

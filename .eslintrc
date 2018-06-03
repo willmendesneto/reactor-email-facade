@@ -1,0 +1,43 @@
+{
+  "plugins": ["prettier"],
+  "extends": ["airbnb", "prettier"],
+  "env": {
+    "node": true,
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "all",
+        "arrowParens": "always",
+      },
+    ],
+    "no-negated-condition": "error",
+    "id-length": [
+      "error",
+      {
+        "min": 3,
+        "properties": "never",
+        "exceptions": ["_"],
+      },
+    ],
+    "padded-blocks": "off",
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allowAfterThis": true,
+      },
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "argsIgnorePattern": "^_",
+        "ignoreRestSiblings": true,
+      },
+    ],
+    "curly": ["error", "all"],
+  }
+}
