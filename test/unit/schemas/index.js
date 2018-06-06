@@ -27,6 +27,17 @@ describe('Schemas', () => {
       expect(validationResult.valid).to.eql(false);
       expect(validationResult.error === '').to.eql(false);
     });
+
+    it('validation should fail for invalid object receives html elements', () => {
+      const malformedMessage = { ...message, text: '<p>should not pass</p>' };
+      const validationResult = runValidation(
+        malformedMessage,
+        schemas.BASE_EMAIL_SCHEMA,
+      );
+
+      expect(validationResult.valid).to.eql(false);
+      expect(validationResult.error === '').to.eql(false);
+    });
   });
 
   describe('EMAIL_SERVICE', () => {

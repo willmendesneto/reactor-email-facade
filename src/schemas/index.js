@@ -1,4 +1,30 @@
-const Joi = require('joi');
+const BaseJoi = require('joi');
+const isHtml = require('is-html');
+
+const Joi = BaseJoi.extend((joi) => ({
+  base: joi.string(),
+  name: 'string',
+  language: {
+    round: 'needs to be a text without html elements',
+  },
+  rules: [
+    {
+      name: 'isAValidText',
+      validate(params, value, state, options) {
+        const isAValidText = !isHtml(value);
+        if (!isAValidText) {
+          return this.createError(
+            'string.isAValidText',
+            { v: value },
+            state,
+            options,
+          );
+        }
+        return isAValidText;
+      },
+    },
+  ],
+}));
 
 const runValidation = (obj, joiSchema) => {
   const { error } = Joi.validate(obj, joiSchema);
@@ -23,8 +49,12 @@ const BASE_EMAIL_SCHEMA = Joi.object().keys({
   from: Joi.string()
     .email()
     .required(),
-  text: Joi.string().required(),
-  subject: Joi.string().required(),
+  text: Joi.string()
+    .required()
+    .isAValidText(),
+  subject: Joi.string()
+    .required()
+    .isAValidText(),
 });
 
 const EMAIL_SERVICE = Joi.object().keys({
