@@ -2,7 +2,7 @@ const chai = require('chai');
 const nock = require('nock');
 const app = require('../../src/app');
 
-describe.only('Integration: Send Email endpoint', () => {
+describe('Integration: Send Email endpoint', () => {
   let server;
 
   const request = {
